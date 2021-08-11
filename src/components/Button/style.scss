@@ -1,0 +1,25 @@
+button{
+  width: 3.6rem;
+  height: 4rem;
+  // background: #6E7DAB;
+  background: #3e7dab;
+  
+  margin: 0.2rem;
+  border-radius: 1rem;
+  // border: 2px solid #CE8147;
+  border: 2px solid #6E7DAB;
+
+  font-weight: 700;
+  font-size: 1.3rem;
+
+  cursor: pointer;
+
+  &:hover{
+    background-color: #D1E3DD
+  }
+}
+
+.function{
+  color: #ffdd4a;
+  background: #5072a7;
+}
