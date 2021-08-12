@@ -9,16 +9,64 @@ import './styles/global.scss';
 
 function App() {
   const [result, setResult] = useState('');
+  const [operation, setOperation] = useState('');
+  const [oldValue, setOldValue] = useState('');
+  const [digitValue, setDigitValue] = useState('');
   
-  function handleResult(value: string){
-    console.log(value);
-    // setResult(value);
-    var numberPattern = /\d+/g;
+  function handleResult(value: string){   
+    var numberPattern = /\d+/g;  
 
     if (value.match(numberPattern)){
-      setResult(prevState => {
-        return prevState + value
-      });
+      setDigitValue(value);
+
+      if ((operation !== '') && (digitValue === '')){
+        console.log(result);
+        console.log(oldValue);
+        console.log(operation);        
+        setResult(value);        
+        setDigitValue(value);
+      }
+      else{
+        console.log(result);
+        console.log(oldValue);
+        console.log(operation);
+
+        setResult(prevState => {
+          return prevState + value
+        });
+      }
+
+    } 
+    else {     
+      if (value === 'AC'){
+        setResult('');
+        setOldValue('');
+        setDigitValue('');
+        setOperation('');
+        return
+      }
+
+      setDigitValue('');           
+
+      console.log('>>>' + '>>' + result + '||' + oldValue + 'xx' +
+      operation + '' + digitValue);
+
+      if (operation !== ''){
+        if ( (operation === value) || (value === '=') ){
+          console.log(result + '' + oldValue + '' +
+          operation + '' + digitValue);
+
+          //Return total value
+          const total = eval(Number(oldValue) + operation + Number(result));
+          console.log('***' + total);
+          setResult(String(total));
+          setOperation('');
+        }      
+      }
+      else {                
+        setOperation(value); 
+        setOldValue(result);        
+      }
     }
   }
 
