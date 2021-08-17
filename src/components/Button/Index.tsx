@@ -16,8 +16,9 @@ function Button({ name, isOperation, ...props }: ButtonProps) {
         <button
             type="button"
             className={isOperation ? 'function' : 'button'}
+            onClick={props.onClick}
             // eslint-disable-next-line react/jsx-props-no-spreading
-            {...props}
+            // {...props}
         >
             {name}
         </button>
