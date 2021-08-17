@@ -8,8 +8,11 @@
     "@testing-library/user-event": "^12.1.10",
     "@types/jest": "^26.0.15",
     "@types/node": "^12.0.0",
-    "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
+    "@typescript-eslint/eslint-plugin": "^4.29.2",
+    "eslint-config-airbnb": "^18.2.1",
+    "eslint-config-prettier": "^8.3.0",
+    "eslint-plugin-react": "^7.21.5",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
@@ -41,6 +44,12 @@
     ]
   },
   "devDependencies": {
-    "node-sass": "4.14"
-  }
+    "@types/react": "^17.0.18",
+    "node-sass": "4.14",
+    "prettier": "^2.3.2"
+  },
+  "main": "index.js",
+  "repository": "https://github.com/PatricFonseca/calculator-react.git",
+  "author": "patricfonseca <patric.ccomp@gmail.com>",
+  "license": "MIT"
 }
