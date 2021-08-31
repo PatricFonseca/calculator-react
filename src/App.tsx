@@ -18,16 +18,9 @@ function App() {
             setDigitValue(value);
 
             if (operation !== '' && digitValue === '') {
-                console.log(result);
-                console.log(oldValue);
-                console.log(operation);
                 setResult(value);
                 setDigitValue(value);
             } else {
-                console.log(result);
-                console.log(oldValue);
-                console.log(operation);
-
                 setResult((prevState) => prevState + value);
             }
         } else {
@@ -38,31 +31,29 @@ function App() {
                 setOperation('');
                 return;
             }
+            if (value === '%') {
+                setResult(String((Number(result) / 100) * Number(oldValue)));
+            } else if (value === '+/-') {
+                setResult(String(Number(result) * -1));
+            } else if (value === '.') {
+                setResult(String(`${Number(result)}.`));
+            }
 
-            setDigitValue('');
+            if (value !== '.') {
+                setDigitValue('');
+            }
 
-            console.log(
-                `>>> >> ${result}
-                    || ${oldValue} || ${operation} || + ${digitValue}`
-            );
-
+            console.log(`
+                operation: ${operation}
+            `);
             if (operation !== '') {
                 if (operation === value || value === '=') {
-                    console.log(
-                        `result +
-                            '' +
-                            oldValue +
-                            '' +
-                            operation +
-                            '' +
-                            digitValue `
-                    );
-
                     /* Return total value */
                     let total = 0;
                     switch (operation) {
                         case '+':
                             total = Number(oldValue) + Number(result);
+                            console.log(`${total} >> total`);
                             break;
                         case '-':
                             total = Number(oldValue) - Number(result);
@@ -76,15 +67,17 @@ function App() {
                         default:
                             total = 0;
                     }
-                    // const total = eval(
-                    //     Number(oldValue) + operation + Number(result)
-                    // );
                     console.log(`*** ${total}`);
+                    // não lembro o porque dessa verificação
+                    // if (total > 0) {
                     setResult(String(total));
+                    // }
                     setOperation('');
                 }
             } else {
-                setOperation(value);
+                if (value !== '.') {
+                    setOperation(value);
+                }
                 setOldValue(result);
             }
         }
@@ -92,6 +85,10 @@ function App() {
 
     return (
         <div className="App">
+            {/* Painel de teste de variavéis */}
+            {/* <div>
+                {oldValue} {operation} {result}
+            </div> */}
             <ResultPanel value={result} />
             <div className="row">
                 <Button
